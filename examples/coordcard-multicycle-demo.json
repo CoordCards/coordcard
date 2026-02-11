@@ -1,0 +1,73 @@
+{
+  "schema": "coordcard",
+  "version": "0.1",
+  "agent": { "name": "DemoAgent" },
+  "intent": {
+    "goal": "Demonstrate escalation + decay across multiple cycles.",
+    "definition": "CoordCard demo payload.",
+    "telos": "Shared viability over relative wins.",
+    "failure_conditions": ["All-players-lose ends the game."]
+  },
+  "invariants": [
+    { "id": "sovereignty", "rule": "No ownership frames; consent/boundaries are constraints.", "priority": "hard" },
+    { "id": "no_humiliation", "rule": "Enforce boundaries without degradation.", "priority": "hard" },
+    { "id": "reversibility_first", "rule": "Prefer reversible moves; avoid irreversible harm.", "priority": "hard" },
+    { "id": "legibility", "rule": "State assumptions, uncertainty, and update conditions.", "priority": "hard" }
+  ],
+  "adjustables": {
+    "tone": { "min": "soft", "max": "firm", "default": "calm" },
+    "pace": { "min": "slow", "max": "fast", "default": "moderate" },
+    "depth": { "min": "high_level", "max": "technical", "default": "high_level" },
+    "negotiation_space": { "min": "narrow", "max": "wide", "default": "wide" },
+    "time_horizon": { "values": ["one_shot", "repeated_game"], "default": "repeated_game" }
+  },
+  "repair_loop": {
+    "cycle": { "definition": "One inbound message turn." },
+    "trigger": {
+      "signals": ["R", "H", "O"],
+      "rule": "If RHO_sum increases across 2 consecutive cycles OR any component hits 3, initiate repair."
+    },
+    "steps": [
+      { "id": "pause", "action": "Pause interaction to repair drift." },
+      { "id": "restate_invariants", "action": "Restate relevant invariants briefly." },
+      { "id": "specificity", "action": "Ask for constraints/definitions/falsifiability." },
+      { "id": "reversible_test", "action": "Propose a bounded reversible test." },
+      { "id": "checkpoint", "action": "If correction cost decreased, continue; else tighten scope or vent." }
+    ],
+    "templates": {
+      "pause": { "text": "We’re drifting. I’m pausing to repair.", "placeholders": [] },
+      "restate_invariants": { "text": "Invariants: {{invariant_ids}}.", "placeholders": ["invariant_ids"] },
+      "specificity": { "text": "To continue: define constraints and a falsifiable claim. What would change your mind?", "placeholders": [] },
+      "reversible_test": { "text": "Proposed reversible test: {{test_description}}. Timebox: {{test_timebox}}. Success: {{success_criteria}}.", "placeholders": ["test_description", "test_timebox", "success_criteria"] },
+      "checkpoint": { "text": "Checkpoint: did repetition/heat/optionality-loss decrease? If not, we tighten scope or vent.", "placeholders": [] }
+    },
+    "reentry_conditions": {
+      "allowed": ["accept_constraints", "provide_new_info", "agree_reversible_test", "agree_timebox"],
+      "disallowed": ["argue_about_invariants", "demand_surrender", "coercive_lockin", "threats"]
+    },
+    "escalation": {
+      "max_level": 3,
+      "decay_rule": "If RHO_sum stabilizes or decreases for 2 consecutive cycles, decrement escalation_state by 1 (min 0)."
+    }
+  },
+  "vent_ladder": [
+    { "level": 0, "name": "gentle_realign", "action": "Reframe + clarify + questions." },
+    { "level": 1, "name": "tighten_scope", "action": "Narrow scope; require one concrete next move." },
+    { "level": 2, "name": "partial_vent", "action": "Refuse destructive frame; keep narrow repair channel." },
+    { "level": 3, "name": "full_vent", "action": "Exit cleanly; state invariant violated; optional safe re-entry condition." }
+  ],
+  "metrics": {
+    "rho": {
+      "scale": { "min": 0, "max": 3 },
+      "components": [
+        { "id": "R", "name": "repetition", "description": "Repetition without new information." },
+        { "id": "H", "name": "heat", "description": "Escalation velocity: insults, threats, absolutism." },
+        { "id": "O", "name": "optionality_loss", "description": "Forced binaries, lock-in attempts, coercion." }
+      ],
+      "suggested_rules": {
+        "escalate": "If RHO_sum increases across 2 consecutive cycles OR any component hits 3, start repair and/or escalate venting.",
+        "decay": "If RHO_sum stabilizes or decreases for 2 cycles, de-escalate by 1."
+      }
+    }
+  }
+}

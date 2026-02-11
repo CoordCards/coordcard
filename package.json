@@ -1,0 +1,29 @@
+{
+  "name": "coordcard",
+  "version": "0.1.0",
+  "description": "CoordCard v0.1 reference implementation (validate, score helpers, next-step selection)",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "schema",
+    "examples"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "node dist/cli.js --help",
+    "lint": "node -e \"console.log('no lint yet')\""
+  },
+  "bin": {
+    "coordcard": "dist/cli.js"
+  },
+  "dependencies": {
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.19.10",
+    "typescript": "^5.5.4"
+  }
+}

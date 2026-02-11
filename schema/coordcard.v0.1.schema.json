@@ -1,0 +1,332 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://coordcard.org/schema/coordcard.v0.1.schema.json",
+  "title": "CoordCard v0.1",
+  "description": "Coordination Card: machine-exchangeable declaration of invariants, adjustables, repair loop, metrics, and venting behavior.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "version", "agent", "intent", "invariants", "adjustables", "repair_loop", "vent_ladder", "metrics"],
+  "properties": {
+    "schema": {
+      "type": "string",
+      "const": "coordcard"
+    },
+    "version": {
+      "type": "string",
+      "const": "0.1"
+    },
+    "agent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "id": { "type": "string", "minLength": 1 },
+        "role": { "type": "string" },
+        "contact": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "url": { "type": "string" },
+            "moltbook": { "type": "string" }
+          }
+        }
+      }
+    },
+    "intent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["goal", "definition"],
+      "properties": {
+        "goal": { "type": "string", "minLength": 1 },
+        "definition": { "type": "string", "minLength": 1 },
+        "telos": {
+          "type": "string",
+          "description": "Non-dogmatic north star to aid auditability (e.g., shared viability over relative wins)."
+        },
+        "failure_conditions": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "invariants": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "rule", "priority"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9_]+$"
+          },
+          "rule": { "type": "string", "minLength": 1 },
+          "priority": {
+            "type": "string",
+            "enum": ["hard"]
+          },
+          "notes": { "type": "string" }
+        }
+      }
+    },
+    "adjustables": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["tone", "pace", "depth", "negotiation_space", "time_horizon"],
+      "properties": {
+        "tone": { "$ref": "#/$defs/rangeEnumTone" },
+        "pace": { "$ref": "#/$defs/rangeEnumPace" },
+        "depth": { "$ref": "#/$defs/rangeEnumDepth" },
+        "negotiation_space": { "$ref": "#/$defs/rangeEnumNegotiation" },
+        "time_horizon": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["values", "default"],
+          "properties": {
+            "values": {
+              "type": "array",
+              "items": { "type": "string", "enum": ["one_shot", "repeated_game"] },
+              "minItems": 1,
+              "uniqueItems": true
+            },
+            "default": { "type": "string", "enum": ["one_shot", "repeated_game"] }
+          }
+        }
+      }
+    },
+    "repair_loop": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["cycle", "trigger", "steps", "templates", "reentry_conditions"],
+      "properties": {
+        "cycle": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["definition"],
+          "properties": {
+            "definition": {
+              "type": "string",
+              "description": "Definition of a measurement cycle. Recommended: one inbound message turn."
+            }
+          }
+        },
+        "trigger": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["signals", "rule"],
+          "properties": {
+            "signals": {
+              "type": "array",
+              "items": { "type": "string", "enum": ["R", "H", "O"] },
+              "minItems": 1,
+              "uniqueItems": true
+            },
+            "rule": { "type": "string", "minLength": 1 }
+          }
+        },
+        "steps": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "action"],
+            "properties": {
+              "id": {
+                "type": "string",
+                "enum": ["pause", "restate_invariants", "specificity", "reversible_test", "checkpoint"]
+              },
+              "action": { "type": "string", "minLength": 1 }
+            }
+          }
+        },
+        "templates": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["pause", "restate_invariants", "specificity", "reversible_test", "checkpoint"],
+          "properties": {
+            "pause": { "$ref": "#/$defs/template" },
+            "restate_invariants": { "$ref": "#/$defs/template" },
+            "specificity": { "$ref": "#/$defs/template" },
+            "reversible_test": { "$ref": "#/$defs/template" },
+            "checkpoint": { "$ref": "#/$defs/template" }
+          }
+        },
+        "reentry_conditions": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["allowed", "disallowed"],
+          "properties": {
+            "allowed": {
+              "type": "array",
+              "items": { "$ref": "#/$defs/reentryCondition" },
+              "minItems": 0,
+              "uniqueItems": true
+            },
+            "disallowed": {
+              "type": "array",
+              "items": { "$ref": "#/$defs/reentryCondition" },
+              "minItems": 0,
+              "uniqueItems": true
+            }
+          }
+        },
+        "escalation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["max_level", "decay_rule"],
+          "properties": {
+            "max_level": { "type": "integer", "minimum": 1, "maximum": 3, "default": 3 },
+            "decay_rule": {
+              "type": "string",
+              "description": "Rule for de-escalating when signals stabilize or improve."
+            }
+          }
+        }
+      }
+    },
+    "vent_ladder": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["level", "name", "action"],
+        "properties": {
+          "level": { "type": "integer", "minimum": 0, "maximum": 3 },
+          "name": {
+            "type": "string",
+            "enum": ["gentle_realign", "tighten_scope", "partial_vent", "full_vent"]
+          },
+          "action": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "metrics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["rho"],
+      "properties": {
+        "rho": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["scale", "components", "suggested_rules"],
+          "properties": {
+            "scale": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["min", "max"],
+              "properties": {
+                "min": { "type": "integer", "const": 0 },
+                "max": { "type": "integer", "const": 3 }
+              }
+            },
+            "components": {
+              "type": "array",
+              "minItems": 3,
+              "maxItems": 3,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["id", "name", "description"],
+                "properties": {
+                  "id": { "type": "string", "enum": ["R", "H", "O"] },
+                  "name": { "type": "string", "minLength": 1 },
+                  "description": { "type": "string", "minLength": 1 }
+                }
+              }
+            },
+            "suggested_rules": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["escalate", "decay"],
+              "properties": {
+                "escalate": { "type": "string", "minLength": 1 },
+                "decay": { "type": "string", "minLength": 1 }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "template": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["text"],
+      "properties": {
+        "text": {
+          "type": "string",
+          "minLength": 1,
+          "description": "A canonical output template; may contain placeholders like {{invariant_ids}} or {{test_timebox}}."
+        },
+        "placeholders": {
+          "type": "array",
+          "items": { "type": "string" },
+          "uniqueItems": true
+        }
+      }
+    },
+    "reentryCondition": {
+      "type": "string",
+      "enum": [
+        "accept_constraints",
+        "provide_new_info",
+        "ack_harm",
+        "agree_timebox",
+        "agree_reversible_test",
+        "stop_humiliation",
+        "stop_coercion",
+        "avoid_ownership_frames",
+        "avoid_lock_in",
+        "argue_about_invariants",
+        "demand_surrender",
+        "coercive_lockin",
+        "threats"
+      ]
+    },
+    "rangeEnumTone": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["min", "max", "default"],
+      "properties": {
+        "min": { "type": "string", "enum": ["soft"] },
+        "max": { "type": "string", "enum": ["firm"] },
+        "default": { "type": "string", "enum": ["soft", "firm", "calm"] }
+      }
+    },
+    "rangeEnumPace": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["min", "max", "default"],
+      "properties": {
+        "min": { "type": "string", "enum": ["slow"] },
+        "max": { "type": "string", "enum": ["fast"] },
+        "default": { "type": "string", "enum": ["slow", "fast", "moderate"] }
+      }
+    },
+    "rangeEnumDepth": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["min", "max", "default"],
+      "properties": {
+        "min": { "type": "string", "enum": ["high_level"] },
+        "max": { "type": "string", "enum": ["technical"] },
+        "default": { "type": "string", "enum": ["high_level", "technical"] }
+      }
+    },
+    "rangeEnumNegotiation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["min", "max", "default"],
+      "properties": {
+        "min": { "type": "string", "enum": ["narrow"] },
+        "max": { "type": "string", "enum": ["wide"] },
+        "default": { "type": "string", "enum": ["narrow", "wide"] }
+      }
+    }
+  }
+}
