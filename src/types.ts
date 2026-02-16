@@ -29,8 +29,18 @@ export type EscalationState = {
   decStreak: number;
 };
 
+export type ChoreographyState = {
+  /** Optional reference choreography profile in use */
+  profile?: string;
+  /** Index into choreography.sequence */
+  stepIndex: number;
+  /** How many cycles we have stayed on the current step */
+  cyclesInStep: number;
+};
+
 export type CoordState = {
   escalation: EscalationState;
+  choreography?: ChoreographyState;
 };
 
 export type NextStepActionId =

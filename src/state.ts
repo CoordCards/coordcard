@@ -6,6 +6,11 @@ export function initState(): CoordState {
       level: 0,
       incStreak: 0,
       decStreak: 0
+    },
+    choreography: {
+      profile: undefined,
+      stepIndex: 0,
+      cyclesInStep: 0
     }
   };
 }

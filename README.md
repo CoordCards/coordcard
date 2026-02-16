@@ -18,10 +18,12 @@ A CoordCard is a machine-exchangeable declaration of:
 
 ## Files
 
-- Schema: `schema/coordcard.v0.1.schema.json`
-- Minimal example: `examples/coordcard-minimal.json`
-- Strict example: `examples/coordcard-strict.json`
-- Multi-cycle demo (escalation + decay): `examples/coordcard-multicycle-demo.json`
+- Schema v0.1: `schema/coordcard.v0.1.schema.json`
+- Schema v0.2: `schema/coordcard.v0.2.schema.json`
+- Minimal example (v0.1): `examples/coordcard-minimal.json`
+- Strict example (v0.1): `examples/coordcard-strict.json`
+- Multi-cycle demo (v0.1 escalation + decay): `examples/coordcard-multicycle-demo.json`
+- v0.2 example (reference choreography): `examples/coordcard-v0.2-example.json`
 
 ## 3-minute try
 

@@ -73,22 +73,67 @@ export function nextStep(card: any, state: CoordState, score: ScoreResult): Next
   let templateText = 'Continue normally.';
   let summary = 'No repair/vent trigger fired.';
 
-  if (level >= 1 || anyHit3 || incTwoCycles) {
-    // Move into repair mode; choose step based on severity.
-    action = 'repair.pause';
-    templateText = templates?.pause?.text ?? 'We’re drifting. I’m pausing to repair.';
-    summary = 'Entering repair mode to reduce correction cost.';
+  // Reference choreography (v0.2 additive). Do NOT harden into a required state machine.
+  const choreography = card?.repair_loop?.choreography;
+  const hasChoreography = choreography?.profile === 'default_v0_2' && Array.isArray(choreography?.sequence);
+  const sequence: string[] = hasChoreography ? choreography.sequence : [];
+  const holdMax: number = choreography?.hold_policy?.max_cycles_per_step ?? 2;
+  const timeoutAction: string = choreography?.hold_policy?.timeout_action ?? 'vent.tighten_scope';
 
-    // If severe (level 3), recommend vent.tighten_scope or partial_vent.
-    if (level >= 3) {
-      action = 'vent.partial_vent';
-      const vent = (card?.vent_ladder ?? []).find((v: any) => v.name === 'partial_vent');
-      templateText = vent?.action ?? 'Refuse destructive frame; keep narrow repair channel.';
-      summary = 'Venting (flow redirection) to preserve participation capacity.';
-    } else if (level === 2) {
-      action = 'repair.specificity';
-      templateText = templates?.specificity?.text ?? 'To continue: define constraints and falsifiability.';
-      summary = 'Routing conflict into specificity (constraints/falsifiability).';
+  // Initialize choreography state if missing.
+  const chState = state.choreography ?? { profile: undefined, stepIndex: 0, cyclesInStep: 0 };
+  let stepIndex = chState.stepIndex ?? 0;
+  let cyclesInStep = chState.cyclesInStep ?? 0;
+
+  const inRepair = level >= 1 || anyHit3 || incTwoCycles;
+  if (inRepair) {
+    if (hasChoreography && sequence.length > 0) {
+      // Reference sequencing: stay on current step up to max cycles, then advance.
+      const stepId = sequence[stepIndex] ?? sequence[0];
+      const stepToAction: Record<string, NextStepResult['action']> = {
+        pause: 'repair.pause',
+        restate_invariants: 'repair.restate_invariants',
+        specificity: 'repair.specificity',
+        reversible_test: 'repair.reversible_test',
+        checkpoint: 'repair.checkpoint'
+      };
+      action = stepToAction[stepId] ?? 'repair.pause';
+      const templateKey = stepId as keyof typeof templates;
+      templateText = (templates?.[templateKey]?.text) ?? templates?.pause?.text ?? 'We’re drifting. I’m pausing to repair.';
+      summary = `Repair mode (reference choreography ${choreography.profile}): step=${stepId}`;
+
+      cyclesInStep += 1;
+      if (cyclesInStep >= holdMax) {
+        // Advance or timeout.
+        cyclesInStep = 0;
+        stepIndex += 1;
+        if (stepIndex >= sequence.length) {
+          // Loop ended: apply timeout action (tighten scope) as a safe default.
+          if (timeoutAction === 'vent.tighten_scope') {
+            action = 'vent.tighten_scope';
+            const vent = (card?.vent_ladder ?? []).find((v: any) => v.name === 'tighten_scope');
+            templateText = vent?.action ?? 'Narrow scope; require one concrete next move.';
+            summary = `Repair choreography timeout: ${timeoutAction}`;
+          }
+          stepIndex = 0;
+        }
+      }
+    } else {
+      // v0.1 behavior fallback.
+      action = 'repair.pause';
+      templateText = templates?.pause?.text ?? 'We’re drifting. I’m pausing to repair.';
+      summary = 'Entering repair mode to reduce correction cost.';
+
+      if (level >= 3) {
+        action = 'vent.partial_vent';
+        const vent = (card?.vent_ladder ?? []).find((v: any) => v.name === 'partial_vent');
+        templateText = vent?.action ?? 'Refuse destructive frame; keep narrow repair channel.';
+        summary = 'Venting (flow redirection) to preserve participation capacity.';
+      } else if (level === 2) {
+        action = 'repair.specificity';
+        templateText = templates?.specificity?.text ?? 'To continue: define constraints and falsifiability.';
+        summary = 'Routing conflict into specificity (constraints/falsifiability).';
+      }
     }
   }
 
@@ -98,6 +143,11 @@ export function nextStep(card: any, state: CoordState, score: ScoreResult): Next
       prevSum: rhoSum,
       incStreak,
       decStreak
+    },
+    choreography: {
+      profile: hasChoreography ? choreography.profile : undefined,
+      stepIndex,
+      cyclesInStep
     }
   };
 
