@@ -16,6 +16,10 @@ A CoordCard is a machine-exchangeable declaration of:
 - **Escalation + decay** (prevents permanent repair lock)
 - Optional: **telos** + **failure conditions** (audit aids; non-dogmatic)
 
+v0.2 (additive): Reference Repair
+Choreography Profile
+v0.2 introduces an optional repair_loop choreohraphy reference profile to reduce implementer divergence around "what happens next" once reapir begins. It preserves v0.1 dwrwemininism + auditability while keeping KISS: no mandated runtime, no enforcement, no telemetry, no orchestration- just a portable, explicit reference sequence and structured inputs that implementations may follow by default.
+
 ## Files
 
 - Schema v0.1: `schema/coordcard.v0.1.schema.json`
