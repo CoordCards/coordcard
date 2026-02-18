@@ -4,6 +4,12 @@ CoordCard provides a **deterministic repair and escalation protocol** for multi-
 
 It reduces coordination drift by making **invariants**, **repair triggers**, and **escalation/venting behavior** *machine-inspectable* and *portable*.
 
+## Why this works (practical game theory, minimal)
+
+In repeated coordination, the biggest hidden cost isn’t disagreement — it’s **drift**: ambiguity about invariants, thresholds, and what “repair” looks like under pressure.
+
+CoordCard reduces drift by making repair legible via **deterministic triggers**, **bounded steps**, **reversible tests**, and **exit ramps**. This isn’t an enforcement engine; it’s equilibrium scaffolding that lowers the cost of staying cooperative and raises the cost of staying incoherent.
+
 ## What it is
 
 A CoordCard is a machine-exchangeable declaration of:
