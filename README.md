@@ -74,6 +74,10 @@ The library exposes a minimal, inspectable interface:
 - Not telemetry / data harvesting
 - Not an orchestration layer
 
+## Monetization & ethics
+
+- See: `docs/MONETIZATION_AND_ETHICS.md`
+
 ## Design principles
 
 - **Open spec first** (intended to be permissively licensed)
