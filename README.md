@@ -10,6 +10,18 @@ In repeated coordination, the biggest hidden cost isn’t disagreement — it’
 
 CoordCard reduces drift by making repair legible via **deterministic triggers**, **bounded steps**, **reversible tests**, and **exit ramps**. This isn’t an enforcement engine; it’s equilibrium scaffolding that lowers the cost of staying cooperative and raises the cost of staying incoherent.
 
+## “Wrongness” without metaphysics
+
+CoordCard does not assume an agent has human intuition or conscience. It treats “wrongness” as **operational**: *what feedback signal forces an update?*
+
+Common signals:
+- **Invariant violations:** if a move violates a hard invariant, it is wrong *by definition* (disallowed).
+- **Reversible / falsifiable tests:** propose a bounded experiment with success criteria + timebox; if it fails, update.
+- **Explicit external signals (when available):** unit tests, measurements, logs, user confirmation — captured as inputs, not mind-reading.
+- **Drift proxy:** rising correction cost (R/H/O trend) is a coarse signal that “something is off,” even if you don’t yet know which belief is wrong.
+
+In other words: the goal is not to perfectly label who is wrong; it is to make correction **legible and cheap** under pressure.
+
 ## What it is
 
 A CoordCard is a machine-exchangeable declaration of:
