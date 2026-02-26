@@ -22,6 +22,8 @@ Common signals:
 
 In other words: the goal is not to perfectly label who is wrong; it is to make correction **legible and cheap** under pressure.
 
+A useful metaphor: **drift is normal** — what matters is the *return path*. The repair choreography is a recirculation loop: not mere repetition, but circulation that turns “costly drift” into renewed coherence.
+
 ## What it is
 
 A CoordCard is a machine-exchangeable declaration of:
