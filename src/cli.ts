@@ -2,9 +2,10 @@
 
 import fs from 'node:fs';
 import { validateCard, initState, nextStep } from './index.js';
+import { runVector } from './run-vector.js';
 
 function usage() {
-  console.log(`coordcard v0.1\n\nCommands:\n  validate <card.json>\n  next --card <card.json> --state <state.json> --R <0-3> --H <0-3> --O <0-3>\n  init-state\n`);
+  console.log(`coordcard v0.1\n\nCommands:\n  validate <card.json>\n  next --card <card.json> --state <state.json> --R <0-3> --H <0-3> --O <0-3>\n  init-state\n  run-vector <vector.json>\n`);
 }
 
 const args = process.argv.slice(2);
@@ -61,6 +62,18 @@ if (cmd === 'next') {
   }
   const clampScore = (n: number) => (n < 0 ? 0 : n > 3 ? 3 : n) as 0 | 1 | 2 | 3;
   const out = nextStep(card, state, { R: clampScore(R), H: clampScore(H), O: clampScore(O), rationale: ['manual'], confidence: 1 });
+  console.log(JSON.stringify(out, null, 2));
+  process.exit(0);
+}
+
+if (cmd === 'run-vector') {
+  const vectorPath = args[1];
+  if (!vectorPath) {
+    console.error('Missing vector.json');
+    usage();
+    process.exit(2);
+  }
+  const out = runVector(vectorPath);
   console.log(JSON.stringify(out, null, 2));
   process.exit(0);
 }

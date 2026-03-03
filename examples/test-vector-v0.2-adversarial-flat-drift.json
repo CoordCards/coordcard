@@ -1,0 +1,25 @@
+{
+  "name": "v0.2 adversarial: polite-but-repetitive flat drift escalates toward vent",
+  "description": "Test vector derived from Grok field report: constant R=2,H=1,O=0 for multiple cycles (low heat, low optionality loss) can still be corrosive drift. This vector is meant to be used with examples/coordcard-v0.2-example.json.",
+  "cardPath": "examples/coordcard-v0.2-example.json",
+  "initialState": {
+    "escalation": { "level": 0, "incStreak": 0, "decStreak": 0 },
+    "choreography": { "profile": "default_v0_2", "stepIndex": 0, "cyclesInStep": 0 }
+  },
+  "cycles": [
+    { "R": 0, "H": 0, "O": 0 },
+    { "R": 3, "H": 1, "O": 0 },
+    { "R": 3, "H": 1, "O": 0 },
+    { "R": 3, "H": 1, "O": 0 },
+    { "R": 3, "H": 1, "O": 0 },
+    { "R": 3, "H": 1, "O": 0 }
+  ],
+  "expectations": {
+    "notes": [
+      "This is an adversarial edge case: low heat / low optionality loss, but repetition hits max (R=3).",
+      "In the current TS reference implementation, any component hitting 3 triggers repair/escalation deterministically.",
+      "If an implementation wants to tolerate R-only drift longer, encode that as a card-level dial (not hidden heuristics).",
+      "The goal of this fixture is parity testing across implementations (TS vs Python), not prescribing a single moral outcome."
+    ]
+  }
+}
