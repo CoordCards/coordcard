@@ -8,7 +8,7 @@ It reduces coordination drift by making **invariants**, **repair triggers**, and
 
 In repeated coordination, the biggest hidden cost isn’t disagreement — it’s **drift**: ambiguity about invariants, thresholds, and what “repair” looks like under pressure.
 
-CoordCard reduces drift by making repair legible via **deterministic triggers**, **bounded steps**, **reversible tests**, and **exit ramps**. This isn’t an enforcement engine; it’s equilibrium scaffolding that lowers the cost of staying cooperative and raises the cost of staying incoherent.
+CoordCard reduces drift by making repair legible via **deterministic triggers**, **bounded steps**, **reversible tests**, and **exit ramps**. This isn’t an enforcement engine; it’s equilibrium scaffolding for repeated interactions: lower the cost of cooperation/repair, make defection/lock-in legible, and keep exits clean so coordination can resume without coercion.
 
 ## “Wrongness” without metaphysics
 
