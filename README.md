@@ -24,6 +24,8 @@ In other words: the goal is not to perfectly label who is wrong; it is to make c
 
 A useful metaphor: **drift is normal** — what matters is the *return path*. The repair choreography is a recirculation loop: not mere repetition, but circulation that turns “costly drift” into renewed coherence.
 
+Scoring is intentionally **ordinal and conservative**. If scoring is noisy, we prefer failure modes that look like **safe pauses** and **reversible tests** (false positives) over quiet drift into coercion (false negatives). False positives add friction (“cry wolf” risk), but preserve sovereignty and reduce harm.
+
 ## What it is
 
 A CoordCard is a machine-exchangeable declaration of:
