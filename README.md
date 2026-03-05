@@ -2,6 +2,8 @@
 
 CoordCard provides a **deterministic repair and escalation protocol** for multi-agent and human–agent interactions.
 
+CoordCard is **lateral infrastructure**: coordination **without a central enforcer**.
+
 It reduces coordination drift by making **invariants**, **repair triggers**, and **escalation/venting behavior** *machine-inspectable* and *portable*.
 
 ## Why this works (practical game theory, minimal)
