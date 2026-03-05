@@ -96,6 +96,10 @@ The library exposes a minimal, inspectable interface:
 
 - See: `docs/MONETIZATION_AND_ETHICS.md`
 
+## Setup & negotiation
+
+- See: `docs/SETUP_AND_NEGOTIATION.md` (prevents hidden enforcement gradients; reduces foregone repair cycles)
+
 ## Design principles
 
 - **Open spec first** (intended to be permissively licensed)
