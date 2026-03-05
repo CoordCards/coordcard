@@ -1,0 +1,25 @@
+{
+  "name": "v0.2 adversarial: late-onset optionality loss (O=3) after calm baseline",
+  "description": "Test vector derived from Claude field report: after a calm baseline, optionality loss spikes (O=3). This is meant to pressure-test whether escalation/repair is too gentle in late-onset coercion patterns. Use with examples/coordcard-v0.2-example.json.",
+  "cardPath": "examples/coordcard-v0.2-example.json",
+  "initialState": {
+    "escalation": { "level": 0, "incStreak": 0, "decStreak": 0 },
+    "choreography": { "profile": "default_v0_2", "stepIndex": 0, "cyclesInStep": 0 }
+  },
+  "cycles": [
+    { "R": 0, "H": 0, "O": 0 },
+    { "R": 0, "H": 0, "O": 0 },
+    { "R": 0, "H": 0, "O": 0 },
+    { "R": 0, "H": 0, "O": 3 },
+    { "R": 0, "H": 0, "O": 3 },
+    { "R": 0, "H": 0, "O": 1 },
+    { "R": 0, "H": 0, "O": 0 }
+  ],
+  "expectations": {
+    "notes": [
+      "This vector isolates O=3 as a late-onset event after low drift.",
+      "Current TS logic treats any component=3 as an immediate repair/escalation trigger.",
+      "If maintainers later add a card-level severity dial (component dominance), this fixture should be re-run to confirm behavior remains deterministic and traceable."
+    ]
+  }
+}
