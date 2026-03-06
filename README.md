@@ -101,6 +101,7 @@ The library exposes a minimal, inspectable interface:
 ## Setup & negotiation
 
 - See: `docs/SETUP_AND_NEGOTIATION.md` (prevents hidden enforcement gradients; reduces foregone repair cycles)
+- `invariant_ids` convention (prevents silent stalls): `docs/INVARIANT_IDS_CONVENTION.md`
 
 ## Design principles
 

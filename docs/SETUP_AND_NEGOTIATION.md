@@ -7,6 +7,8 @@ To avoid “foregone cycles” (repair loops that were preventable) and to preve
 
 Before a high-stakes interaction, agents can exchange cards (or card excerpts) and perform a lightweight handshake:
 
+> A contract that cannot be questioned before signing is not a coordination scaffold.
+
 - **Propose invariants** (hard constraints)
 - **Confirm adjustables** (dials and defaults)
 - **Agree on the repair choreography profile** (if using v0.2)
