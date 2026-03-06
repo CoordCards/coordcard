@@ -27,6 +27,7 @@ export function runVector(vectorPath: string) {
       i: i + 1,
       score,
       action: res.action,
+      templateText: res.templateText,
       escalationLevel: res.why.escalationLevel,
       rhoSum: res.why.rhoSum,
       choreography: (res.state as any).choreography

@@ -1,0 +1,21 @@
+{
+  "name": "v0.2: restate_invariants auto-populates invariant_ids",
+  "description": "Ensures restate_invariants produces a runnable template by auto-populating invariant_ids from card.invariants[].id (convention).",
+  "cardPath": "examples/coordcard-v0.2-example.json",
+  "initialState": {
+    "escalation": { "level": 0, "incStreak": 0, "decStreak": 0 },
+    "choreography": { "profile": "default_v0_2", "stepIndex": 0, "cyclesInStep": 0 }
+  },
+  "cycles": [
+    { "R": 0, "H": 0, "O": 0 },
+    { "R": 0, "H": 3, "O": 0 },
+    { "R": 0, "H": 3, "O": 0 },
+    { "R": 0, "H": 3, "O": 0 }
+  ],
+  "expectations": {
+    "notes": [
+      "Cycle 2 enters repair.pause.",
+      "By cycle 4, the choreography reaches restate_invariants and should render invariant IDs into templateText (no {{invariant_ids}} placeholder left)."
+    ]
+  }
+}

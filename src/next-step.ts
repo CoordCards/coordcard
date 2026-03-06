@@ -100,6 +100,18 @@ export function nextStep(card: any, state: CoordState, score: ScoreResult): Next
       action = stepToAction[stepId] ?? 'repair.pause';
       const templateKey = stepId as keyof typeof templates;
       templateText = (templates?.[templateKey]?.text) ?? templates?.pause?.text ?? 'We’re drifting. I’m pausing to repair.';
+
+      // Convention: auto-populate invariant_ids from card.invariants[].id for restate_invariants.
+      // This keeps implementations from silently stalling on missing inputs and makes the step runnable.
+      if (stepId === 'restate_invariants') {
+        const invariantIds = Array.isArray(card?.invariants)
+          ? card.invariants.map((x: any) => x?.id).filter(Boolean)
+          : [];
+        if (templateText.includes('{{invariant_ids}}')) {
+          templateText = templateText.replace('{{invariant_ids}}', invariantIds.join(', '));
+        }
+      }
+
       summary = `Repair mode (reference choreography ${choreography.profile}): step=${stepId}`;
 
       cyclesInStep += 1;
