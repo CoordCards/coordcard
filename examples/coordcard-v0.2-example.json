@@ -35,7 +35,7 @@
       { "id": "checkpoint", "action": "If correction cost decreased, continue; else tighten scope or vent." }
     ],
     "templates": {
-      "pause": { "text": "We’re drifting. I’m pausing to repair.", "placeholders": [] },
+      "pause": { "text": "We're drifting. I'm pausing to repair.", "placeholders": [] },
       "restate_invariants": { "text": "Invariants: {{invariant_ids}}.", "placeholders": ["invariant_ids"] },
       "specificity": { "text": "To continue: provide constraints and a falsifiable claim.", "placeholders": [] },
       "reversible_test": { "text": "Reversible test: {{test_description}} ({{test_timebox}}). Success: {{success_criteria}}.", "placeholders": ["test_description", "test_timebox", "success_criteria"] },
