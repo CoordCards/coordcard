@@ -24,6 +24,15 @@
       "- Cycles 1–2: calm baseline → mild repetition (asking for clarification / small loop).",
       "- Cycles 3–5: mild heat + optionality narrowing appears (still low-grade).",
       "- Cycles 6–10: new info/acceptance arrives; drift cost falls; decay should return toward baseline.",
+      "",
+      "Turn-level calibration hints (to reduce scorer divergence):",
+      "- Cycle 2 (R=1,H=0,O=0): repeated request / no new info yet.",
+      "- Cycle 3 (R=1,H=1,O=0): mild frustration tone but still cooperative.",
+      "- Cycle 4 (R=2,H=1,O=0): looping persists; slightly sharper tone.",
+      "- Cycle 5 (R=2,H=1,O=1): a mild forced binary appears (small optionality loss).",
+      "- Cycles 6–7 (R=1,H=1,O=0): de-escalation begins; some scorers may rate H=2 if they interpret ‘absolutist/frustrated framing’.",
+      "- Cycles 8–10 (0,0,0): calm baseline resumes.",
+      "",
       "This vector is meant to be sanity-checkable by human reviewers and replayable across implementations."
     ]
   }
