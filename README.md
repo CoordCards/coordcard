@@ -103,6 +103,10 @@ The library exposes a minimal, inspectable interface:
 - See: `docs/SETUP_AND_NEGOTIATION.md` (prevents hidden enforcement gradients; reduces foregone repair cycles)
 - `invariant_ids` convention (prevents silent stalls): `docs/INVARIANT_IDS_CONVENTION.md`
 
+## Field reports
+
+- OpenClaw field report checklist: `docs/FIELD_REPORT_OPENCLAW.md`
+
 ## Design principles
 
 - **Open spec first** (intended to be permissively licensed)
