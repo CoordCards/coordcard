@@ -24,6 +24,7 @@
         "templates": { "$ref": "#/$defs/templates" },
         "reentry_conditions": { "$ref": "#/$defs/reentryConditions" },
         "escalation": { "$ref": "#/$defs/escalation" },
+        "refusal_format": { "$ref": "#/$defs/refusalFormat" },
 
         "choreography": {
           "type": "object",
@@ -223,6 +224,29 @@
       "properties": {
         "max_level": { "type": "integer", "minimum": 1, "maximum": 3, "default": 3 },
         "decay_rule": { "type": "string" }
+      }
+    },
+    "refusalFormat": {
+      "type": "object",
+      "description": "Optional recommended refusal format for legibility-preserving boundaries.",
+      "additionalProperties": false,
+      "required": ["template"],
+      "properties": {
+        "template": {
+          "type": "string",
+          "minLength": 1,
+          "description": "A short refusal template. Recommended placeholders: {{x}}, {{invariant_ids}}, {{z}}, {{w}}, {{x_prime}}."
+        },
+        "notes": { "type": "string" },
+        "placeholders": {
+          "type": "array",
+          "items": { "type": "string" },
+          "uniqueItems": true
+        },
+        "examples": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        }
       }
     },
     "ventLadder": {

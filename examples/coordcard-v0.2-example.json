@@ -49,6 +49,11 @@
       "max_level": 3,
       "decay_rule": "If RHO_sum stabilizes or decreases for 2 consecutive cycles, decrement escalation_state by 1 (min 0)."
     },
+    "refusal_format": {
+      "template": "I can’t do {{x}} because it would violate invariants: {{invariant_ids}}. If you can provide {{z}} (or adjust {{w}}), I can do {{x_prime}}.",
+      "placeholders": ["x", "invariant_ids", "z", "w", "x_prime"],
+      "notes": "Refusal is information, not punishment. Naming the invariant keeps optionality legible. Re-entry conditions preserve sovereignty."
+    },
     "choreography": {
       "profile": "default_v0_2",
       "sequence": ["pause", "restate_invariants", "specificity", "reversible_test", "checkpoint"],
