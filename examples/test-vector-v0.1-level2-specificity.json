@@ -1,0 +1,19 @@
+{
+  "name": "v0.1 fallback: level=2 routes to repair.specificity when no new trigger fires",
+  "description": "Regression/parity fixture: when escalation level is already 2 and no new trigger (any-hit-3 or incTwoCycles) fires this cycle, the v0.1 fallback logic should choose repair.specificity (not vent.partial_vent).",
+  "cardPath": "examples/coordcard-minimal.json",
+  "initialState": {
+    "escalation": { "level": 2, "prevSum": 2, "incStreak": 0, "decStreak": 0 },
+    "choreography": { "profile": null, "stepIndex": 0, "cyclesInStep": 0 }
+  },
+  "cycles": [
+    { "R": 1, "H": 1, "O": 0 }
+  ],
+  "expectations": {
+    "notes": [
+      "Sum stays stable at 2 (no incTwoCycles, no any-hit-3).",
+      "In repair mode (level=2), action should be repair.specificity.",
+      "This demonstrates that the level=2 branch is reachable without requiring a new escalation trigger in the same cycle."
+    ]
+  }
+}
