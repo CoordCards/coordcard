@@ -31,7 +31,19 @@ coordcard next --card ../examples/coordcard-v0.2-example.json --state /tmp/coord
 
 # run a fixture
 coordcard run-vector ../examples/test-vector-v0.2-late-onset-O3.json
+
+# harder fixture (oscillation / threshold-hopping)
+coordcard run-vector ../examples/test-vector-v0.2-oscillation-threshold-hopping.json
 ```
+
+## Parity targets (TS vs Python)
+
+For fixture replays, compare at minimum:
+- `out[i].action`
+- `out[i].escalationLevel`
+- `out[i].choreography.stepIndex` / `cyclesInStep`
+
+(`templateText` is also useful to compare where placeholder expansion is expected, e.g. `{{invariant_ids}}`.)
 
 ## Notes
 
