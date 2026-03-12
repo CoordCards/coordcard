@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "coordcard"
+version = "0.2.0"
+description = "CoordCard protocol (Python reference port): deterministic repair choreography + validation"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "Apache-2.0" }
+authors = [{ name = "CoordCard Maintainers" }]
+dependencies = [
+  "jsonschema>=4.19.0"
+]
+
+[project.scripts]
+coordcard = "coordcard.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "."}
+
+[tool.setuptools.packages.find]
+where = ["."]

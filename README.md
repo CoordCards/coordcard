@@ -107,6 +107,10 @@ The library exposes a minimal, inspectable interface:
 
 - OpenClaw field report checklist: `docs/FIELD_REPORT_OPENCLAW.md`
 
+## Python (optional)
+
+- Python reference port (install + CLI): `python/README.md`
+
 ## Refusal format (recommended)
 
 - Legibility-preserving refusals: `docs/REFUSAL_FORMAT.md`
