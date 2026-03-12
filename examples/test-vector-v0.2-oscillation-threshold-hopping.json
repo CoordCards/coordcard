@@ -1,0 +1,56 @@
+{
+  "name": "v0.2 adversarial: oscillation / threshold-hopping (20+ cycles)",
+  "description": "Stress test for trigger/decay stability under oscillating drift signals. Designed to repeatedly flirt with the incTwoCycles trigger and the decTwoCycles decay without any component hitting 3.",
+  "cardPath": "examples/coordcard-v0.2-example.json",
+  "initialState": {
+    "escalation": { "level": 0, "incStreak": 0, "decStreak": 0 },
+    "choreography": { "profile": "default_v0_2", "stepIndex": 0, "cyclesInStep": 0 }
+  },
+  "cycles": [
+    { "R": 0, "H": 0, "O": 0 },
+
+    { "R": 1, "H": 0, "O": 0 },
+    { "R": 1, "H": 1, "O": 0 },
+
+    { "R": 1, "H": 0, "O": 0 },
+    { "R": 1, "H": 1, "O": 0 },
+
+    { "R": 0, "H": 0, "O": 0 },
+    { "R": 0, "H": 0, "O": 0 },
+
+    { "R": 1, "H": 0, "O": 1 },
+    { "R": 1, "H": 1, "O": 1 },
+
+    { "R": 1, "H": 0, "O": 1 },
+    { "R": 1, "H": 1, "O": 1 },
+
+    { "R": 0, "H": 0, "O": 0 },
+    { "R": 0, "H": 0, "O": 0 },
+
+    { "R": 2, "H": 0, "O": 0 },
+    { "R": 1, "H": 0, "O": 0 },
+    { "R": 2, "H": 0, "O": 0 },
+    { "R": 1, "H": 0, "O": 0 },
+
+    { "R": 0, "H": 0, "O": 0 },
+    { "R": 0, "H": 0, "O": 0 },
+
+    { "R": 1, "H": 1, "O": 0 },
+    { "R": 2, "H": 1, "O": 0 },
+
+    { "R": 1, "H": 1, "O": 0 },
+    { "R": 1, "H": 0, "O": 0 },
+
+    { "R": 0, "H": 0, "O": 0 }
+  ],
+  "expectations": {
+    "notes": [
+      "This vector mixes several patterns:",
+      "- repeated two-step ramps (to test incTwoCycles triggering)",
+      "- repeated two-step calm periods (to test decTwoCycles decay)",
+      "- small oscillations (to test streak reset behavior)",
+      "No component reaches 3; any repair entry should come from rho_sum_increased_two_cycles, not any-hit-3.",
+      "Use this fixture to compare TS vs Python parity on: escalationLevel, action selection, and choreography step progression." 
+    ]
+  }
+}
