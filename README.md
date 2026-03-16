@@ -115,6 +115,10 @@ The library exposes a minimal, inspectable interface:
 
 - Legibility-preserving refusals: `docs/REFUSAL_FORMAT.md`
 
+## Roadmap
+
+- Living roadmap: `ROADMAP.md`
+
 ## Background (optional)
 
 - Toroidal coordination (non-normative): `docs/PHILOSOPHY_TOROID.md`
