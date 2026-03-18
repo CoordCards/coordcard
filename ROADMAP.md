@@ -17,6 +17,8 @@ This roadmap is intentionally lightweight. It’s a *skeleton* to keep momentum 
 
 Goal: confirm TS↔Python parity on fixtures.
 
+- Script: `scripts/parity-check.sh` (fixture-driven; diffs minimal parity fields)
+
 - Compare at minimum:
   - `action`
   - `escalationLevel`
