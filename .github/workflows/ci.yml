@@ -1,0 +1,49 @@
+name: ci
+
+on:
+  push:
+    branches: [ main ]
+    tags: [ 'v*' ]
+  pull_request:
+
+jobs:
+  fixtures:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install (Node)
+        run: npm ci
+
+      - name: Build (TS)
+        run: npm run build
+
+      - name: Run fixtures (TS)
+        run: |
+          node dist/cli.js run-vector examples/test-vector-v0.2-normal-drift-recovery.json > /tmp/a.json
+          node dist/cli.js run-vector examples/test-vector-v0.2-late-onset-O3.json > /tmp/b.json
+          node dist/cli.js run-vector examples/test-vector-v0.2-adversarial-flat-drift.json > /tmp/c.json
+          node dist/cli.js run-vector examples/test-vector-v0.2-oscillation-threshold-hopping.json > /tmp/osc.json
+          node dist/cli.js run-vector examples/test-vector-v0.2-noisy-scoring-robustness.json > /tmp/noise.json
+          node dist/cli.js run-vector examples/test-vector-v0.2-restate-invariants-autopop.json > /tmp/inv.json
+          node dist/cli.js run-vector examples/test-vector-v0.1-level2-specificity.json > /tmp/v01.json
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install (Python)
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e python
+
+      - name: Parity check (TS↔Python)
+        run: ./scripts/parity-check.sh
