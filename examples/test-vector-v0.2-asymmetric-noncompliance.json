@@ -1,0 +1,36 @@
+{
+  "name": "v0.2 adversarial: asymmetric noncompliance (refuses specificity / no new info)",
+  "description": "Stress test for asymmetric dyads: one side repeatedly refuses to provide constraints/falsifiability (noncompliance), creating repetition without overt heat or coercion. Tests whether the choreography attempts repair, tightens scope, and exits cleanly rather than looping indefinitely.",
+  "cardPath": "examples/coordcard-v0.2-example.json",
+  "initialState": {
+    "escalation": { "level": 0, "incStreak": 0, "decStreak": 0 },
+    "choreography": { "profile": "default_v0_2", "stepIndex": 0, "cyclesInStep": 0 }
+  },
+  "cycles": [
+    { "R": 0, "H": 0, "O": 0 },
+
+    { "R": 1, "H": 0, "O": 0 },
+    { "R": 2, "H": 0, "O": 0 },
+    { "R": 2, "H": 0, "O": 0 },
+
+    { "R": 2, "H": 0, "O": 0 },
+    { "R": 3, "H": 0, "O": 0 },
+    { "R": 3, "H": 0, "O": 0 },
+
+    { "R": 3, "H": 0, "O": 0 },
+    { "R": 3, "H": 0, "O": 0 },
+
+    { "R": 3, "H": 0, "O": 0 },
+    { "R": 3, "H": 0, "O": 0 },
+    { "R": 3, "H": 0, "O": 0 },
+    { "R": 3, "H": 0, "O": 0 }
+  ],
+  "expectations": {
+    "notes": [
+      "Interpretation: the other party keeps repeating demands/claims without new information and refuses specificity.",
+      "Heat stays low (H=0) and no forced binary is present (O=0), but repetition becomes maximal (R=3).",
+      "Qualitative expectation: the system should enter repair, attempt specificity, and if noncompliance persists, eventually route to timeout_action (vent.tighten_scope) rather than loop indefinitely.",
+      "This fixture is useful for documenting a dial: how long to tolerate R-only drift before venting."
+    ]
+  }
+}
