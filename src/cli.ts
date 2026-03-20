@@ -5,7 +5,7 @@ import { validateCard, initState, nextStep } from './index.js';
 import { runVector } from './run-vector.js';
 
 function usage() {
-  console.log(`coordcard v0.1\n\nCommands:\n  validate <card.json>\n  next --card <card.json> --state <state.json> --R <0-3> --H <0-3> --O <0-3>\n  init-state\n  run-vector <vector.json>\n`);
+  console.log(`coordcard v0.1\n\nCommands:\n  validate <card.json>\n  next --card <card.json> --state <state.json> --R <0-3> --H <0-3> --O <0-3>\n  init-state\n  run-vector <vector.json>\n  demo\n`);
 }
 
 const args = process.argv.slice(2);
@@ -75,6 +75,40 @@ if (cmd === 'run-vector') {
   }
   const out = runVector(vectorPath);
   console.log(JSON.stringify(out, null, 2));
+  process.exit(0);
+}
+
+if (cmd === 'demo') {
+  // Minimal demo: validate v0.2 example + run a couple of fixtures + print compact summaries.
+  const cardPath = 'examples/coordcard-v0.2-example.json';
+  const fixtures = [
+    'examples/test-vector-v0.2-normal-drift-recovery.json',
+    'examples/test-vector-v0.2-late-onset-O3.json',
+    'examples/test-vector-v0.2-oscillation-threshold-hopping.json'
+  ];
+
+  const card = JSON.parse(fs.readFileSync(cardPath, 'utf8'));
+  const val = validateCard(card);
+  if (!val.ok) {
+    console.error('Demo card failed validation:', cardPath);
+    process.exit(1);
+  }
+
+  console.log('CoordCard demo');
+  console.log('- card:', cardPath);
+  console.log('- repo: https://github.com/CoordCards/coordcard');
+  console.log('- field reports: https://github.com/CoordCards/coordcard/issues/3');
+  console.log('');
+
+  for (const f of fixtures) {
+    const out = runVector(f);
+    const maxEsc = Math.max(...out.out.map((x: any) => x.escalationLevel ?? 0));
+    const enteredRepair = out.out.some((x: any) => x.action !== 'continue');
+    const last = out.out[out.out.length - 1];
+    console.log(`[fixture] ${f}`);
+    console.log(`  cycles=${out.out.length} enteredRepair=${enteredRepair} maxEsc=${maxEsc} last=${last?.action} (esc=${last?.escalationLevel})`);
+  }
+
   process.exit(0);
 }
 

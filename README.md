@@ -62,6 +62,9 @@ cd coordcard-v0.1
 npm i
 npm run build
 
+# optional: quick demo (runs a few fixtures and prints a compact summary)
+node dist/cli.js demo
+
 # 1) Validate a card
 node dist/cli.js validate examples/coordcard-minimal.json
 
