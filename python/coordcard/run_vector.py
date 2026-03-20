@@ -16,14 +16,23 @@ def run_vector(vector_path: str) -> Dict[str, Any]:
     out = []
     for i, cyc in enumerate(v.get("cycles", [])):
         res = next_step(card, state, cyc)
+        why = res.get("why", {}) or {}
         out.append(
             {
                 "i": i + 1,
                 "score": cyc,
                 "action": res.get("action"),
                 "templateText": res.get("templateText"),
-                "escalationLevel": res.get("why", {}).get("escalationLevel"),
-                "rhoSum": res.get("why", {}).get("rhoSum"),
+                "why": {
+                    "triggerFired": why.get("triggerFired"),
+                    "ruleSource": why.get("ruleSource"),
+                    "ruleText": why.get("ruleText"),
+                    "summary": why.get("summary"),
+                    "rhoSum": why.get("rhoSum"),
+                    "escalationLevel": why.get("escalationLevel"),
+                },
+                "escalationLevel": why.get("escalationLevel"),
+                "rhoSum": why.get("rhoSum"),
                 "choreography": res.get("state", {}).get("choreography"),
             }
         )

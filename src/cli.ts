@@ -105,8 +105,18 @@ if (cmd === 'demo') {
     const maxEsc = Math.max(...out.out.map((x: any) => x.escalationLevel ?? 0));
     const enteredRepair = out.out.some((x: any) => x.action !== 'continue');
     const last = out.out[out.out.length - 1];
+    const firstTrigger = out.out.find((x: any) => x?.why?.triggerFired && x.why.triggerFired !== 'none' && !String(x.why.triggerFired).includes('decay'));
+    const timeout = out.out.find((x: any) => x.action === 'vent.tighten_scope');
+
     console.log(`[fixture] ${f}`);
-    console.log(`  cycles=${out.out.length} enteredRepair=${enteredRepair} maxEsc=${maxEsc} last=${last?.action} (esc=${last?.escalationLevel})`);
+    console.log(`  cycles=${out.out.length} enteredRepair=${enteredRepair} maxEsc=${maxEsc}`);
+    if (firstTrigger) {
+      console.log(`  firstTrigger: ${firstTrigger.why.triggerFired} @ i=${firstTrigger.i}`);
+    }
+    if (timeout) {
+      console.log(`  timeout: vent.tighten_scope @ i=${timeout.i}`);
+    }
+    console.log(`  last: ${last?.action} (esc=${last?.escalationLevel})`);
   }
 
   process.exit(0);

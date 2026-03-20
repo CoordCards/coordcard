@@ -34,6 +34,9 @@ coordcard run-vector ../examples/test-vector-v0.2-late-onset-O3.json
 
 # harder fixture (oscillation / threshold-hopping)
 coordcard run-vector ../examples/test-vector-v0.2-oscillation-threshold-hopping.json
+
+# demo (compact summaries)
+coordcard demo
 ```
 
 ## Parity targets (TS vs Python)

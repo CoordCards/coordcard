@@ -28,6 +28,14 @@ export function runVector(vectorPath: string) {
       score,
       action: res.action,
       templateText: res.templateText,
+      why: {
+        triggerFired: res.why.triggerFired,
+        ruleSource: res.why.ruleSource,
+        ruleText: res.why.ruleText,
+        summary: res.why.summary,
+        rhoSum: res.why.rhoSum,
+        escalationLevel: res.why.escalationLevel
+      },
       escalationLevel: res.why.escalationLevel,
       rhoSum: res.why.rhoSum,
       choreography: (res.state as any).choreography
