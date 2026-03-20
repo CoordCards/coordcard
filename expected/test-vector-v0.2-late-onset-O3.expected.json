@@ -1,0 +1,70 @@
+{
+  "name": "v0.2 adversarial: late-onset optionality loss (O=3) after calm baseline",
+  "vectorPath": "examples/test-vector-v0.2-late-onset-O3.json",
+  "cardPath": "examples/coordcard-v0.2-example.json",
+  "out": [
+    {
+      "i": 1,
+      "action": "continue",
+      "escalationLevel": 0,
+      "choreography": {
+        "stepIndex": 0,
+        "cyclesInStep": 0
+      }
+    },
+    {
+      "i": 2,
+      "action": "continue",
+      "escalationLevel": 0,
+      "choreography": {
+        "stepIndex": 0,
+        "cyclesInStep": 0
+      }
+    },
+    {
+      "i": 3,
+      "action": "continue",
+      "escalationLevel": 0,
+      "choreography": {
+        "stepIndex": 0,
+        "cyclesInStep": 0
+      }
+    },
+    {
+      "i": 4,
+      "action": "repair.pause",
+      "escalationLevel": 1,
+      "choreography": {
+        "stepIndex": 0,
+        "cyclesInStep": 1
+      }
+    },
+    {
+      "i": 5,
+      "action": "repair.pause",
+      "escalationLevel": 2,
+      "choreography": {
+        "stepIndex": 1,
+        "cyclesInStep": 0
+      }
+    },
+    {
+      "i": 6,
+      "action": "repair.restate_invariants",
+      "escalationLevel": 1,
+      "choreography": {
+        "stepIndex": 1,
+        "cyclesInStep": 1
+      }
+    },
+    {
+      "i": 7,
+      "action": "repair.restate_invariants",
+      "escalationLevel": 1,
+      "choreography": {
+        "stepIndex": 2,
+        "cyclesInStep": 0
+      }
+    }
+  ]
+}

@@ -1,0 +1,223 @@
+{
+  "name": "v0.2 adversarial: oscillation / threshold-hopping (20+ cycles)",
+  "vectorPath": "examples/test-vector-v0.2-oscillation-threshold-hopping.json",
+  "cardPath": "examples/coordcard-v0.2-example.json",
+  "out": [
+    {
+      "i": 1,
+      "action": "continue",
+      "escalationLevel": 0,
+      "choreography": {
+        "stepIndex": 0,
+        "cyclesInStep": 0
+      }
+    },
+    {
+      "i": 2,
+      "action": "continue",
+      "escalationLevel": 0,
+      "choreography": {
+        "stepIndex": 0,
+        "cyclesInStep": 0
+      }
+    },
+    {
+      "i": 3,
+      "action": "repair.pause",
+      "escalationLevel": 1,
+      "choreography": {
+        "stepIndex": 0,
+        "cyclesInStep": 1
+      }
+    },
+    {
+      "i": 4,
+      "action": "repair.pause",
+      "escalationLevel": 1,
+      "choreography": {
+        "stepIndex": 1,
+        "cyclesInStep": 0
+      }
+    },
+    {
+      "i": 5,
+      "action": "repair.restate_invariants",
+      "escalationLevel": 1,
+      "choreography": {
+        "stepIndex": 1,
+        "cyclesInStep": 1
+      }
+    },
+    {
+      "i": 6,
+      "action": "repair.restate_invariants",
+      "escalationLevel": 1,
+      "choreography": {
+        "stepIndex": 2,
+        "cyclesInStep": 0
+      }
+    },
+    {
+      "i": 7,
+      "action": "continue",
+      "escalationLevel": 0,
+      "choreography": {
+        "stepIndex": 2,
+        "cyclesInStep": 0
+      }
+    },
+    {
+      "i": 8,
+      "action": "continue",
+      "escalationLevel": 0,
+      "choreography": {
+        "stepIndex": 2,
+        "cyclesInStep": 0
+      }
+    },
+    {
+      "i": 9,
+      "action": "repair.specificity",
+      "escalationLevel": 1,
+      "choreography": {
+        "stepIndex": 2,
+        "cyclesInStep": 1
+      }
+    },
+    {
+      "i": 10,
+      "action": "repair.specificity",
+      "escalationLevel": 1,
+      "choreography": {
+        "stepIndex": 3,
+        "cyclesInStep": 0
+      }
+    },
+    {
+      "i": 11,
+      "action": "repair.reversible_test",
+      "escalationLevel": 1,
+      "choreography": {
+        "stepIndex": 3,
+        "cyclesInStep": 1
+      }
+    },
+    {
+      "i": 12,
+      "action": "repair.reversible_test",
+      "escalationLevel": 1,
+      "choreography": {
+        "stepIndex": 4,
+        "cyclesInStep": 0
+      }
+    },
+    {
+      "i": 13,
+      "action": "continue",
+      "escalationLevel": 0,
+      "choreography": {
+        "stepIndex": 4,
+        "cyclesInStep": 0
+      }
+    },
+    {
+      "i": 14,
+      "action": "continue",
+      "escalationLevel": 0,
+      "choreography": {
+        "stepIndex": 4,
+        "cyclesInStep": 0
+      }
+    },
+    {
+      "i": 15,
+      "action": "continue",
+      "escalationLevel": 0,
+      "choreography": {
+        "stepIndex": 4,
+        "cyclesInStep": 0
+      }
+    },
+    {
+      "i": 16,
+      "action": "continue",
+      "escalationLevel": 0,
+      "choreography": {
+        "stepIndex": 4,
+        "cyclesInStep": 0
+      }
+    },
+    {
+      "i": 17,
+      "action": "continue",
+      "escalationLevel": 0,
+      "choreography": {
+        "stepIndex": 4,
+        "cyclesInStep": 0
+      }
+    },
+    {
+      "i": 18,
+      "action": "continue",
+      "escalationLevel": 0,
+      "choreography": {
+        "stepIndex": 4,
+        "cyclesInStep": 0
+      }
+    },
+    {
+      "i": 19,
+      "action": "continue",
+      "escalationLevel": 0,
+      "choreography": {
+        "stepIndex": 4,
+        "cyclesInStep": 0
+      }
+    },
+    {
+      "i": 20,
+      "action": "continue",
+      "escalationLevel": 0,
+      "choreography": {
+        "stepIndex": 4,
+        "cyclesInStep": 0
+      }
+    },
+    {
+      "i": 21,
+      "action": "repair.checkpoint",
+      "escalationLevel": 1,
+      "choreography": {
+        "stepIndex": 4,
+        "cyclesInStep": 1
+      }
+    },
+    {
+      "i": 22,
+      "action": "vent.tighten_scope",
+      "escalationLevel": 1,
+      "choreography": {
+        "stepIndex": 0,
+        "cyclesInStep": 0
+      }
+    },
+    {
+      "i": 23,
+      "action": "continue",
+      "escalationLevel": 0,
+      "choreography": {
+        "stepIndex": 0,
+        "cyclesInStep": 0
+      }
+    },
+    {
+      "i": 24,
+      "action": "continue",
+      "escalationLevel": 0,
+      "choreography": {
+        "stepIndex": 0,
+        "cyclesInStep": 0
+      }
+    }
+  ]
+}

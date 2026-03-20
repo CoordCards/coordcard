@@ -1,0 +1,16 @@
+{
+  "name": "v0.1 fallback: level=2 routes to repair.specificity when no new trigger fires",
+  "vectorPath": "examples/test-vector-v0.1-level2-specificity.json",
+  "cardPath": "examples/coordcard-minimal.json",
+  "out": [
+    {
+      "i": 1,
+      "action": "repair.specificity",
+      "escalationLevel": 2,
+      "choreography": {
+        "stepIndex": 0,
+        "cyclesInStep": 0
+      }
+    }
+  ]
+}

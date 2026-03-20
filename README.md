@@ -123,6 +123,12 @@ The library exposes a minimal, inspectable interface:
 
 - Living roadmap: `ROADMAP.md`
 
+## Conformance
+
+- Fixture snapshots (TS canonical): `expected/*.expected.json`
+- Check snapshots: `scripts/check-expected.sh`
+- TS↔Python parity check: `scripts/parity-check.sh`
+
 ## Background (optional)
 
 - Toroidal coordination (non-normative): `docs/PHILOSOPHY_TOROID.md`

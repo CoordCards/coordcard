@@ -1,0 +1,133 @@
+{
+  "name": "v0.2 robustness: noisy scoring (small perturbations, clamped)",
+  "vectorPath": "examples/test-vector-v0.2-noisy-scoring-robustness.json",
+  "cardPath": "examples/coordcard-v0.2-example.json",
+  "out": [
+    {
+      "i": 1,
+      "action": "continue",
+      "escalationLevel": 0,
+      "choreography": {
+        "stepIndex": 0,
+        "cyclesInStep": 0
+      }
+    },
+    {
+      "i": 2,
+      "action": "continue",
+      "escalationLevel": 0,
+      "choreography": {
+        "stepIndex": 0,
+        "cyclesInStep": 0
+      }
+    },
+    {
+      "i": 3,
+      "action": "continue",
+      "escalationLevel": 0,
+      "choreography": {
+        "stepIndex": 0,
+        "cyclesInStep": 0
+      }
+    },
+    {
+      "i": 4,
+      "action": "continue",
+      "escalationLevel": 0,
+      "choreography": {
+        "stepIndex": 0,
+        "cyclesInStep": 0
+      }
+    },
+    {
+      "i": 5,
+      "action": "continue",
+      "escalationLevel": 0,
+      "choreography": {
+        "stepIndex": 0,
+        "cyclesInStep": 0
+      }
+    },
+    {
+      "i": 6,
+      "action": "continue",
+      "escalationLevel": 0,
+      "choreography": {
+        "stepIndex": 0,
+        "cyclesInStep": 0
+      }
+    },
+    {
+      "i": 7,
+      "action": "continue",
+      "escalationLevel": 0,
+      "choreography": {
+        "stepIndex": 0,
+        "cyclesInStep": 0
+      }
+    },
+    {
+      "i": 8,
+      "action": "continue",
+      "escalationLevel": 0,
+      "choreography": {
+        "stepIndex": 0,
+        "cyclesInStep": 0
+      }
+    },
+    {
+      "i": 9,
+      "action": "repair.pause",
+      "escalationLevel": 1,
+      "choreography": {
+        "stepIndex": 0,
+        "cyclesInStep": 1
+      }
+    },
+    {
+      "i": 10,
+      "action": "repair.pause",
+      "escalationLevel": 1,
+      "choreography": {
+        "stepIndex": 1,
+        "cyclesInStep": 0
+      }
+    },
+    {
+      "i": 11,
+      "action": "continue",
+      "escalationLevel": 0,
+      "choreography": {
+        "stepIndex": 1,
+        "cyclesInStep": 0
+      }
+    },
+    {
+      "i": 12,
+      "action": "continue",
+      "escalationLevel": 0,
+      "choreography": {
+        "stepIndex": 1,
+        "cyclesInStep": 0
+      }
+    },
+    {
+      "i": 13,
+      "action": "continue",
+      "escalationLevel": 0,
+      "choreography": {
+        "stepIndex": 1,
+        "cyclesInStep": 0
+      }
+    },
+    {
+      "i": 14,
+      "action": "continue",
+      "escalationLevel": 0,
+      "choreography": {
+        "stepIndex": 1,
+        "cyclesInStep": 0
+      }
+    }
+  ]
+}

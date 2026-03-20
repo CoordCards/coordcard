@@ -1,0 +1,43 @@
+{
+  "name": "v0.2: restate_invariants auto-populates invariant_ids",
+  "vectorPath": "examples/test-vector-v0.2-restate-invariants-autopop.json",
+  "cardPath": "examples/coordcard-v0.2-example.json",
+  "out": [
+    {
+      "i": 1,
+      "action": "continue",
+      "escalationLevel": 0,
+      "choreography": {
+        "stepIndex": 0,
+        "cyclesInStep": 0
+      }
+    },
+    {
+      "i": 2,
+      "action": "repair.pause",
+      "escalationLevel": 1,
+      "choreography": {
+        "stepIndex": 0,
+        "cyclesInStep": 1
+      }
+    },
+    {
+      "i": 3,
+      "action": "repair.pause",
+      "escalationLevel": 2,
+      "choreography": {
+        "stepIndex": 1,
+        "cyclesInStep": 0
+      }
+    },
+    {
+      "i": 4,
+      "action": "repair.restate_invariants",
+      "escalationLevel": 3,
+      "choreography": {
+        "stepIndex": 1,
+        "cyclesInStep": 1
+      }
+    }
+  ]
+}

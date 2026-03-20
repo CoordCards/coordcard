@@ -78,27 +78,7 @@ reduce() {
   if [[ "$HAS_JQ" -eq 1 ]]; then
     jq '{name, vectorPath, cardPath, out: [ .out[] | {i, action, escalationLevel, choreography: {stepIndex: (.choreography.stepIndex // 0), cyclesInStep: (.choreography.cyclesInStep // 0)} } ] }'
   else
-    node - <<'NODE'
-let s='';
-process.stdin.on('data',d=>s+=d).on('end',()=>{
-  const j=JSON.parse(s);
-  const out={
-    name:j.name,
-    vectorPath:j.vectorPath,
-    cardPath:j.cardPath,
-    out:(j.out||[]).map(x=>({
-      i:x.i,
-      action:x.action,
-      escalationLevel:x.escalationLevel,
-      choreography:{
-        stepIndex:(x.choreography && x.choreography.stepIndex!=null)?x.choreography.stepIndex:0,
-        cyclesInStep:(x.choreography && x.choreography.cyclesInStep!=null)?x.choreography.cyclesInStep:0
-      }
-    }))
-  };
-  process.stdout.write(JSON.stringify(out));
-});
-NODE
+    node scripts/reduce-run-vector.mjs
   fi
 }
 

@@ -1,0 +1,124 @@
+{
+  "name": "v0.2 adversarial: asymmetric noncompliance (refuses specificity / no new info)",
+  "vectorPath": "examples/test-vector-v0.2-asymmetric-noncompliance.json",
+  "cardPath": "examples/coordcard-v0.2-example.json",
+  "out": [
+    {
+      "i": 1,
+      "action": "continue",
+      "escalationLevel": 0,
+      "choreography": {
+        "stepIndex": 0,
+        "cyclesInStep": 0
+      }
+    },
+    {
+      "i": 2,
+      "action": "continue",
+      "escalationLevel": 0,
+      "choreography": {
+        "stepIndex": 0,
+        "cyclesInStep": 0
+      }
+    },
+    {
+      "i": 3,
+      "action": "repair.pause",
+      "escalationLevel": 1,
+      "choreography": {
+        "stepIndex": 0,
+        "cyclesInStep": 1
+      }
+    },
+    {
+      "i": 4,
+      "action": "repair.pause",
+      "escalationLevel": 1,
+      "choreography": {
+        "stepIndex": 1,
+        "cyclesInStep": 0
+      }
+    },
+    {
+      "i": 5,
+      "action": "continue",
+      "escalationLevel": 0,
+      "choreography": {
+        "stepIndex": 1,
+        "cyclesInStep": 0
+      }
+    },
+    {
+      "i": 6,
+      "action": "repair.restate_invariants",
+      "escalationLevel": 1,
+      "choreography": {
+        "stepIndex": 1,
+        "cyclesInStep": 1
+      }
+    },
+    {
+      "i": 7,
+      "action": "repair.restate_invariants",
+      "escalationLevel": 2,
+      "choreography": {
+        "stepIndex": 2,
+        "cyclesInStep": 0
+      }
+    },
+    {
+      "i": 8,
+      "action": "repair.specificity",
+      "escalationLevel": 3,
+      "choreography": {
+        "stepIndex": 2,
+        "cyclesInStep": 1
+      }
+    },
+    {
+      "i": 9,
+      "action": "repair.specificity",
+      "escalationLevel": 3,
+      "choreography": {
+        "stepIndex": 3,
+        "cyclesInStep": 0
+      }
+    },
+    {
+      "i": 10,
+      "action": "repair.reversible_test",
+      "escalationLevel": 3,
+      "choreography": {
+        "stepIndex": 3,
+        "cyclesInStep": 1
+      }
+    },
+    {
+      "i": 11,
+      "action": "repair.reversible_test",
+      "escalationLevel": 3,
+      "choreography": {
+        "stepIndex": 4,
+        "cyclesInStep": 0
+      }
+    },
+    {
+      "i": 12,
+      "action": "repair.checkpoint",
+      "escalationLevel": 3,
+      "choreography": {
+        "stepIndex": 4,
+        "cyclesInStep": 1
+      }
+    },
+    {
+      "i": 13,
+      "action": "vent.tighten_scope",
+      "escalationLevel": 3,
+      "choreography": {
+        "stepIndex": 0,
+        "cyclesInStep": 0
+      }
+    }
+  ]
+}
