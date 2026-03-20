@@ -115,6 +115,10 @@ The library exposes a minimal, inspectable interface:
 
 - Legibility-preserving refusals: `docs/REFUSAL_FORMAT.md`
 
+## Plug-and-play
+
+- Adoption plan (no enforcement / no telemetry): `docs/PLUG_AND_PLAY.md`
+
 ## Roadmap
 
 - Living roadmap: `ROADMAP.md`
