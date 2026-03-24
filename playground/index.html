@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CoordCard Playground</title>
+    <style>
+      body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; margin: 24px; max-width: 980px; }
+      .row { display: flex; gap: 16px; flex-wrap: wrap; align-items: end; }
+      label { display: block; font-size: 12px; color: #444; margin-bottom: 6px; }
+      select, button { padding: 10px 12px; font-size: 14px; }
+      button { cursor: pointer; }
+      pre { background: #0b1020; color: #e6edf3; padding: 12px; overflow: auto; border-radius: 8px; }
+      table { border-collapse: collapse; width: 100%; margin-top: 16px; }
+      th, td { border-bottom: 1px solid #ddd; padding: 8px; font-size: 13px; text-align: left; }
+      th { position: sticky; top: 0; background: #fff; }
+      code { background: #f2f2f2; padding: 2px 6px; border-radius: 6px; }
+      .muted { color: #666; font-size: 13px; }
+      .links a { margin-right: 12px; }
+    </style>
+  </head>
+  <body>
+    <h1>CoordCard Playground (MVP)</h1>
+    <p class="muted">
+      Static, no accounts, no telemetry. Runs deterministic <code>nextStep</code> over fixture vectors and produces shareable output.
+    </p>
+
+    <div class="links">
+      <a href="https://github.com/CoordCards/coordcard" target="_blank" rel="noreferrer">Repo</a>
+      <a href="https://github.com/CoordCards/coordcard/issues/3" target="_blank" rel="noreferrer">Field reports (Issue #3)</a>
+      <a href="https://github.com/CoordCards/coordcard/releases" target="_blank" rel="noreferrer">Releases</a>
+    </div>
+
+    <div class="row" style="margin-top: 16px;">
+      <div>
+        <label for="fixture">Fixture</label>
+        <select id="fixture"></select>
+      </div>
+      <button id="run">Run</button>
+      <button id="copy">Copy Issue #3 report</button>
+    </div>
+
+    <div id="summary" class="muted" style="margin-top: 12px;"></div>
+
+    <table id="table" aria-label="Run output">
+      <thead>
+        <tr>
+          <th>i</th>
+          <th>R/H/O</th>
+          <th>rhoSum</th>
+          <th>triggerFired</th>
+          <th>action</th>
+          <th>esc</th>
+          <th>step</th>
+          <th>cyclesInStep</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <h2>Reduced output (JSON)</h2>
+    <pre id="json"></pre>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
