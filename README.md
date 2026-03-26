@@ -152,3 +152,5 @@ This spec intentionally uses **ordinal 0–3** scoring rather than false precisi
 - `O` (optionality loss): 0 open → 3 coercive lock-in / forced binary
 
 Trigger + decay rules live in the card under `repair_loop.trigger`, `repair_loop.escalation.decay_rule`, and `metrics.rho.suggested_rules`.
+Vercel URL: https://coordcard.vercel.app
+
