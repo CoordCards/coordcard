@@ -17,6 +17,9 @@
       code { background: #f2f2f2; padding: 2px 6px; border-radius: 6px; }
       .muted { color: #666; font-size: 13px; }
       .links a { margin-right: 12px; }
+      .summaryBox { margin-top: 12px; padding: 10px 12px; border: 1px solid #e5e5e5; border-radius: 8px; background: #fafafa; }
+      tr.row-trigger td { background: #fff6d6; }
+      tr.row-decay td { background: #f1f7ff; }
     </style>
   </head>
   <body>
@@ -27,20 +30,22 @@
 
     <div class="links">
       <a href="https://github.com/CoordCards/coordcard" target="_blank" rel="noreferrer">Repo</a>
-      <a href="https://github.com/CoordCards/coordcard/issues/3" target="_blank" rel="noreferrer">Field reports (Issue #3)</a>
+      <a href="https://github.com/CoordCards/coordcard/issues/3" target="_blank" rel="noreferrer">Field Reports (Issue #3)</a>
       <a href="https://github.com/CoordCards/coordcard/releases" target="_blank" rel="noreferrer">Releases</a>
     </div>
 
     <div class="row" style="margin-top: 16px;">
       <div>
-        <label for="fixture">Fixture</label>
+        <label for="fixture">Scenario</label>
         <select id="fixture"></select>
       </div>
-      <button id="run">Run</button>
+      <button id="run">Run Scenario</button>
       <button id="copy">Copy Issue #3 report</button>
     </div>
 
-    <div id="summary" class="muted" style="margin-top: 12px;"></div>
+    <p class="muted" style="margin-top: 10px;">Select a scenario and press Run to simulate coordination behavior.</p>
+
+    <div id="summary" class="summaryBox"></div>
 
     <table id="table" aria-label="Run output">
       <thead>

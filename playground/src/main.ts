@@ -24,20 +24,42 @@ for (const f of FIXTURES) {
 
 let lastRun: any = null;
 
+function escapeHtml(s: string) {
+  return s
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#39;');
+}
+
+function triggerSummary(run: any): string {
+  const firstTrigger = run.out.find((x: any) => x.triggerFired && x.triggerFired !== 'none' && !String(x.triggerFired).includes('decay'));
+  if (!firstTrigger) return 'No trigger detected';
+  return `Trigger detected: ${firstTrigger.triggerFired} at step ${firstTrigger.i}`;
+}
+
 function render(run: any) {
   tbody.innerHTML = '';
 
   const enteredRepair = run.out.some((x: any) => x.action !== 'continue');
   const maxEsc = Math.max(...run.out.map((x: any) => x.escalationLevel));
   const timeout = run.out.find((x: any) => x.action === 'vent.tighten_scope');
-  const firstTrigger = run.out.find((x: any) => x.triggerFired && x.triggerFired !== 'none' && !String(x.triggerFired).includes('decay'));
 
-  summary.textContent = `cycles=${run.out.length} enteredRepair=${enteredRepair} maxEsc=${maxEsc}` +
-    (firstTrigger ? ` | firstTrigger=${firstTrigger.triggerFired}@${firstTrigger.i}` : '') +
-    (timeout ? ` | timeout@${timeout.i}` : '');
+  const headline = `cycles=${run.out.length} enteredRepair=${enteredRepair} maxEsc=${maxEsc}` + (timeout ? ` | timeout@${timeout.i}` : '');
+  const trig = triggerSummary(run);
+
+  // Visually separate headline from trigger summary.
+  summary.innerHTML = `${escapeHtml(headline)}<hr style="border:0;border-top:1px solid #e5e5e5;margin:10px 0;"/>${escapeHtml(trig)}`;
 
   for (const row of run.out) {
     const tr = document.createElement('tr');
+
+    if (row.triggerFired && row.triggerFired !== 'none') {
+      if (String(row.triggerFired).includes('decay')) tr.classList.add('row-decay');
+      else tr.classList.add('row-trigger');
+    }
+
     const cells = [
       String(row.i),
       `${row.score.R}/${row.score.H}/${row.score.O}`,
@@ -63,7 +85,11 @@ async function run() {
   const f = FIXTURES.find((x) => x.id === fixtureSelect.value) ?? FIXTURES[0];
   const card = cardV02 as any;
   const out = await runVector(f.vector, card);
-  lastRun = { fixture: f, card: 'examples/coordcard-v0.2-example.json', out: out.out };
+  lastRun = {
+    scenario: { id: f.id, label: f.label, vectorName: f.vector.name ?? '' },
+    card: 'examples/coordcard-v0.2-example.json',
+    out: out.out
+  };
   render(lastRun);
 }
 
@@ -71,17 +97,26 @@ async function copyReport() {
   if (!lastRun) {
     await run();
   }
-  const f = lastRun.fixture;
+
+  const trig = triggerSummary(lastRun);
+
+  const payload = {
+    scenario: lastRun.scenario,
+    card: lastRun.card,
+    triggerSummary: trig,
+    out: lastRun.out
+  };
+
   const md = [
     `Field report (playground)`,
     ``,
-    `- Card: examples/coordcard-v0.2-example.json`,
-    `- Fixture: ${f.label}`,
-    `- Vector name: ${f.vector.name ?? ''}`,
+    `- Scenario: ${lastRun.scenario.label}`,
+    `- Card: ${lastRun.card}`,
+    `- ${trig}`,
     ``,
     `Reduced output (paste into Issue #3):`,
     '```json',
-    JSON.stringify(lastRun, null, 2),
+    JSON.stringify(payload, null, 2),
     '```',
     ``,
     `Issue #3: https://github.com/CoordCards/coordcard/issues/3`
