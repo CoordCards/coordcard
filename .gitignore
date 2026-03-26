@@ -5,3 +5,8 @@ dist/
 *.log
 /tmp
 package-lock.json
+
+# Python
+__pycache__/
+*.pyc
+python/**/__pycache__/
