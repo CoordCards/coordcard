@@ -42,9 +42,11 @@ A CoordCard is a machine-exchangeable declaration of:
 - **Escalation + decay** (prevents permanent repair lock)
 - Optional: **telos** + **failure conditions** (audit aids; non-dogmatic)
 
-v0.2 (additive): Reference Repair
-Choreography Profile
-v0.2 introduces an optional repair_loop choreohraphy reference profile to reduce implementer divergence around "what happens next" once reapir begins. It preserves v0.1 dwrwemininism + auditability while keeping KISS: no mandated runtime, no enforcement, no telemetry, no orchestration- just a portable, explicit reference sequence and structured inputs that implementations may follow by default.
+## v0.2 (additive): reference repair choreography profile
+
+v0.2 introduces an optional `repair_loop.choreography` reference profile to reduce implementer divergence around “what happens next” once repair begins.
+
+It preserves v0.1 determinism + auditability while keeping KISS: no mandated runtime, no enforcement, no telemetry, no orchestration—just a portable, explicit reference sequence and structured inputs that implementations may follow by default.
 
 ## Files
 
@@ -55,7 +57,13 @@ v0.2 introduces an optional repair_loop choreohraphy reference profile to reduce
 - Multi-cycle demo (v0.1 escalation + decay): `examples/coordcard-multicycle-demo.json`
 - v0.2 example (reference choreography): `examples/coordcard-v0.2-example.json`
 
-## 3-minute try
+## Playground (no install)
+
+Try fixtures in-browser (static; no accounts; no telemetry):
+
+- https://coordcard.vercel.app
+
+## 3-minute try (local)
 
 ```bash
 cd coordcard-v0.1
