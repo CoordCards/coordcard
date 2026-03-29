@@ -62,6 +62,7 @@ It preserves v0.1 determinism + auditability while keeping KISS: no mandated run
 Try fixtures in-browser (static; no accounts; no telemetry):
 
 - https://coordcard.vercel.app
+- Use “Copy Issue #3 report” to paste a reproducible field report into Issue #3.
 
 ## 3-minute try (local)
 
