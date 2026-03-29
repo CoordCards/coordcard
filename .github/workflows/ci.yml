@@ -49,3 +49,9 @@ jobs:
 
       - name: Parity check (TS↔Python)
         run: ./scripts/parity-check.sh
+
+      - name: Build Playground (static)
+        run: |
+          cd playground
+          npm install --no-audit --no-fund
+          npm run build
