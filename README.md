@@ -109,6 +109,7 @@ The library exposes a minimal, inspectable interface:
 ## Monetization & ethics
 
 - See: `docs/MONETIZATION_AND_ETHICS.md`
+- Optional services (implementation/support; no lock-in): `docs/SERVICES.md`
 
 ## Setup & negotiation
 
